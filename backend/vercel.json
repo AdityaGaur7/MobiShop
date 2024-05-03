@@ -1,8 +1,51 @@
 {
-    "version": 2,
-    "routes": [
-      { "src": "/api/(.*)", "dest": "api/$1" },
-      { "src": "/(.*)", "dest": "public/$1" }
-    ]
-  }
-  
+  "version": 2,
+  "builds": [
+    { "src": "*.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    {
+      "src": "/api/register",
+      "dest": "/register"
+    },
+    {
+      "src": "/api/login",
+      "dest": "/login"
+    },
+    {
+      "src": "/api/add-product",
+      "dest": "/add-product"
+    },
+    {
+      "src": "/api/products",
+      "dest": "/products"
+    },
+    {
+      "src": "/api/product/:id",
+      "dest": "/product/:id"
+    },
+    {
+      "src": "/api/product/:id",
+      "methods": ["DELETE"],
+      "dest": "/product/:id"
+    },
+    {
+      "src": "/api/search/:key",
+      "dest": "/search/:key"
+    },
+    {
+      "src": "/certificates/:id",
+      "methods": ["OPTIONS", "POST"],
+      "dest": "/your-vercel-function-for-options-and-post"
+    },
+    {
+      "src": "/certificates/:id",
+      "methods": ["OPTIONS", "GET"],
+      "dest": "/your-vercel-function-for-options-and-get"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ]
+}
