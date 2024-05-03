@@ -7,6 +7,8 @@ const AddProduct = () => {
     const [company, setCompnay] = React.useState('');
     const [error,setError] = React.useState(false);
 
+    const LINK = process.env.SERVER_LINK;
+
     const addProduct = async () => {
 
         if(!name || !price || !company || !category)
@@ -16,7 +18,7 @@ const AddProduct = () => {
         }
 
         const userId = JSON.parse(localStorage.getItem('user'))._id;
-        let result = await fetch("http://localhost:5000/add-product", {
+        let result = await fetch(`${LINK}/add-product`, {
             method: "post",
             body: JSON.stringify({ name, price, category, company, userId }),
             headers: {

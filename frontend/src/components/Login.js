@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 const Login = () => {
 
+    const LINK = process.env.SERVER_LINK;
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const navigate = useNavigate();
@@ -14,7 +16,7 @@ const Login = () => {
     }, [])
 
     const handleLogin = async () => {
-        let result = await fetch("http://localhost:5000/login", {
+        let result = await fetch(`${LINK}/login`, {
             method: 'post',
             body: JSON.stringify({ email, password }),
             headers: {
@@ -23,6 +25,7 @@ const Login = () => {
         });
         result = await result.json();
         console.warn(result)
+        console.log(LINK);
         if (result.auth) {
             localStorage.setItem('user', JSON.stringify(result.user));
             localStorage.setItem('token', JSON.stringify(result.auth));

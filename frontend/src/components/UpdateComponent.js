@@ -8,6 +8,8 @@ const UpdateProduct = () => {
     const [company, setCompnay] = React.useState('');
     const params = useParams();
     const navigate = useNavigate();
+    
+const LINK = process.env.SERVER_LINK;
 
     useEffect(() => {
         getProductDetails();
@@ -15,7 +17,7 @@ const UpdateProduct = () => {
 
     const getProductDetails = async () => {
         console.warn(params)
-        let result = await fetch(`http://localhost:5000/product/${params.id}`);
+        let result = await fetch(`${LINK}/product/${params.id}`);
         result = await result.json();
         setName(result.name);
         setPrice(result.price);
@@ -25,7 +27,7 @@ const UpdateProduct = () => {
 
     const updateProduct = async () => {
         console.warn(name, price, category, company)
-        let result = await fetch(`http://localhost:5000/product/${params.id}`, {
+        let result = await fetch(`${LINK}/product/${params.id}`, {
             method: 'Put',
             body: JSON.stringify({ name, price, category, company }),
             headers: {

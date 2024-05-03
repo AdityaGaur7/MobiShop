@@ -5,6 +5,8 @@ const SignUp = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    
+const LINK = process.env.SERVER_LINK;
     const navigate = useNavigate();
     useEffect(() => {
         const auth = localStorage.getItem('user');
@@ -15,7 +17,7 @@ const SignUp = () => {
 
     const collectData = async () => {
         console.warn(name, email, password);
-        let result = await fetch("http://localhost:5000/register", {
+        let result = await fetch(`${LINK}/register`, {
             method: 'post',
             body: JSON.stringify({ name, email, password }),
             headers: {
