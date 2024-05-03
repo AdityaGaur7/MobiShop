@@ -10,6 +10,9 @@ const PORT = 5000 || process.env.PORT;
 app.use(express.json());
 app.use(cors());
 
+app.get("/",async(req,res)=>{
+    res.send('khada hoon aaj bhi vhi');
+})
 app.post("/register", async (req, resp) => {
     let user = new User(req.body);
     let result = await user.save();
